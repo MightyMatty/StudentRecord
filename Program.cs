@@ -7,6 +7,7 @@ namespace StudentRecords
 {
     class Program
     {
+        
         static List<string> records = new List<string>();
 
         static void Main(string[] args)
@@ -59,6 +60,7 @@ namespace StudentRecords
             string fileName = Console.ReadLine();
             try
             {
+                
                 int number = ReadFileIntoRecordsList(fileName);
                 Console.WriteLine("{0} Records read in", number);
             }
@@ -120,7 +122,7 @@ namespace StudentRecords
             var formatted = record.Replace(",", "\t");
             Console.WriteLine(formatted);
         }
-
+        
         static void ListAllRecords()
         {
             foreach (var record in records)
@@ -130,11 +132,22 @@ namespace StudentRecords
         }
 
         static void ChangeGrade()
-        {
-            foreach (var record in records)
-            {
-
-            }
+        { 
+                Console.Write("Enter Index No. :");
+                try
+                {
+                    int index = Convert.ToInt32(Console.ReadLine());
+                    WriteRecordToConsole(records[index]);
+                }
+                catch (IndexOutOfRangeException)
+                {
+                    Console.WriteLine("Not a valid index");
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Not a number");
+                }
+            
         }
 
         static void writeNewRecord()
